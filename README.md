@@ -3,7 +3,7 @@
 A surfing physics sandbox for Android. There is no track to follow and no combo meter to feed —
 there is a wave, a board, and whatever the two of them do together.
 
-Built solo, in Unreal Engine 5.4, on a fork of the engine. Three years of work: roughly 45 000 lines
+Built solo, in Unreal Engine 5.4, on a fork of the engine. Eight years of work: roughly 45 000 lines
 of C++ and 110 specs.
 
 ![The hub](docs/images/hub.png)
