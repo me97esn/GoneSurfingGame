@@ -1,0 +1,25 @@
+Copyright (c) 2023-2026 Emil Stenberg. All rights reserved.
+
+This repository is published so that it can be read: by anyone evaluating the work,
+and by anyone curious how it is built. Reading it, and quoting short excerpts with
+attribution, is welcome.
+
+No other rights are granted. In particular, no licence is given to copy, modify,
+redistribute, or create derivative works from this source or its content, and no
+licence is given to use it in another product, commercial or otherwise.
+
+THIRD-PARTY CONTENT
+
+This repository deliberately contains no third-party art, audio, engine source
+or simulation data. Those parts of the shipped game are licensed from others and
+are not the copyright holder's to redistribute, so they are absent here.
+
+GoneSurfing/Content/Legal/ThirdPartyNotices.txt is included because it documents
+what the shipped game contains and credits its authors. It describes the game,
+not the contents of this repository.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+For any other use, contact esandin@gmail.com.

@@ -1,0 +1,29 @@
+{
+  "id": "funboard",
+  "displayName": "Funboard",
+  "tagline": "Easy waves, real turns.",
+  "description": "The traditional step down from a soft-top, and for most people the second board they own. Still long enough to paddle well and catch waves early, but with a harder rail and more shape underneath, so it holds a line and will come round when you ask it to.",
+  "outline": "funboard",
+  "ratings": {
+    "speed": 3,
+    "turning": 3,
+    "difficulty": 2
+  },
+  "assistLevel": 2,
+  "visualMesh": "/Game/3dModels/surfboard_funboard.surfboard_funboard",
+  "visualMaterial": "/Game/Materials/M_Surfboard.M_Surfboard",
+  "visualScale": 1.153,
+  "surferDeckOffsetZ": -0.011,
+  "tuning": {
+    "SurfboardForwardsDamping": 0.020,
+    "yawFwdOffFaceFloor": 0.25,
+    "AngularDampingX": 0.475,
+    "AngularDampingY": 0.475,
+    "AngularDampingZ": 0.18,
+    "lateralTurnCoefficient": 4100.0,
+    "lateralTurnHardCarveBoost": 0.525,
+    "slopeThrustCoefficient": 34000.0,
+    "StaminaRecoverySeconds": 0.0,
+    "StaminaTiredGuardEverywhere": 1.0
+  }
+}

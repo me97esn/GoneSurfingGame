@@ -1,0 +1,27 @@
+{
+  "id": "hybrid",
+  "displayName": "Hybrid",
+  "tagline": "The everyday board.",
+  "description": "A performance outline given back some width and thickness. It catches waves far more easily than a true shortboard and keeps working when the surf is average, while retaining enough rail and rocker to be surfed properly. This is the board most people ride on most days.",
+  "outline": "hybrid",
+  "ratings": {
+    "speed": 4,
+    "turning": 4,
+    "difficulty": 4
+  },
+  "assistLevel": 0,
+  "visualMesh": "/Game/3dModels/surfboard_hybrid.surfboard_hybrid",
+  "visualMaterial": "/Game/Materials/M_Surfboard.M_Surfboard",
+  "visualScale": 0.945,
+  "surferDeckOffsetZ": -0.117,
+  "tuning": {
+    "SurfboardForwardsDamping": 0.040,
+    "yawFwdOffFaceFloor": 0.12,
+    "AngularDampingX": 0.4375,
+    "AngularDampingY": 0.4375,
+    "AngularDampingZ": 0.12,
+    "lateralTurnCoefficient": 4750.0,
+    "lateralTurnHardCarveBoost": 0.6375,
+    "slopeThrustCoefficient": 38103.4
+  }
+}

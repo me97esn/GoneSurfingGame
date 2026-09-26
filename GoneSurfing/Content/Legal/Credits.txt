@@ -1,0 +1,21 @@
+# What the About screen says. Read at open by AboutPanel.cpp; no rebuild needed to change it.
+#
+#   key: value        -> the game card (author, contact, blurb)
+#   [SECTION]         -> a heading on the credits card
+#   Name | Detail     -> one row under the last heading; \n inside Detail is a line break
+#
+# Attribution that a licence REQUIRES stays word for word as the licence asks. "Evening" is
+# Kevin MacLeod's own requested form (Music License.txt at the repo root); keep all four lines.
+
+author: Emil Stenberg
+contact: esandin@gmail.com
+blurb: A surfing physics sandbox. Every wave is water data, every turn is the board answering it.
+
+[MUSIC & SOUND]
+"Evening" | Kevin MacLeod (incompetech.com)\nLicensed under Creative Commons: By Attribution 4.0\ncreativecommons.org/licenses/by/4.0/
+Wave & water sounds | Generated in-game, in-house
+
+[CHARACTER & ART]
+Surfer "Ash" | DesertLab3d (olgarudi.com) · Fab
+Wave simulation | Blender + FLIP Fluids (flipfluids.com)
+Boards, water, UI | In-house

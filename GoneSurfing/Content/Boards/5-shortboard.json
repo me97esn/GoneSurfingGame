@@ -1,0 +1,27 @@
+{
+  "id": "shortboard",
+  "displayName": "Shortboard",
+  "tagline": "Demanding, and worth it.",
+  "description": "The performance board: narrow, thin, and heavily rockered. It is the hardest to paddle and the least forgiving of a bad wave or a late drop, and it needs a steep face to work at all. In return it turns tighter and more vertically than anything else in the rack.",
+  "outline": "shortboard",
+  "ratings": {
+    "speed": 3,
+    "turning": 5,
+    "difficulty": 5
+  },
+  "assistLevel": 0,
+  "visualMesh": "/Game/3dModels/surfboard_shortboard.surfboard_shortboard",
+  "visualMaterial": "/Game/Materials/M_Surfboard.M_Surfboard",
+  "visualScale": 0.900,
+  "surferDeckOffsetZ": -0.126,
+  "tuning": {
+    "SurfboardForwardsDamping": 0.048,
+    "yawFwdOffFaceFloor": 0.00,
+    "AngularDampingX": 0.4,
+    "AngularDampingY": 0.4,
+    "AngularDampingZ": 0.1,
+    "lateralTurnCoefficient": 5400.0,
+    "lateralTurnHardCarveBoost": 0.75,
+    "slopeThrustCoefficient": 34000.0
+  }
+}

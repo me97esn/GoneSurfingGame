@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Unreal Plugin Language (UPL) file: repoint the Android app icon at the adaptive mipmap icons.
+
+  By default UE writes android:icon="@drawable/icon" on the <application> element (see
+  UEDeployAndroid.GenerateManifest). We swap it to @mipmap/ic_launcher and add
+  android:roundIcon="@mipmap/ic_launcher_round" so Android 8+ uses the adaptive icons in
+  Build/Android/res/mipmap-anydpi-v26/ (foreground = the full-bleed surfer art, masked to the
+  launcher shape), falling back to the mipmap-*/ic_launcher.png on pre-Android-8 devices.
+
+  Registered via GoneSurfing.Build.cs (AdditionalPropertiesForReceipt "AndroidPlugin").
+  See RELEASE_CHECKLIST.md ("Add an app icon").
+-->
+<root xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidManifestUpdates>
+        <loopElements tag="application">
+            <removeAttribute tag="$" name="android:icon"/>
+            <addAttribute tag="$" name="android:icon" value="@mipmap/ic_launcher"/>
+            <addAttribute tag="$" name="android:roundIcon" value="@mipmap/ic_launcher_round"/>
+        </loopElements>
+    </androidManifestUpdates>
+</root>

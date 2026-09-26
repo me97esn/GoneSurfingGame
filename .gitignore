@@ -1,0 +1,8 @@
+# This repository is a source snapshot; nothing here is built.
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+.vs/
+.vscode/
+*.sln

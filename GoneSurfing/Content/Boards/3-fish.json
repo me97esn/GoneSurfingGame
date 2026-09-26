@@ -1,0 +1,27 @@
+{
+  "id": "fish",
+  "displayName": "Fish",
+  "tagline": "Fast where other boards bog down.",
+  "description": "Short, wide, and flat through the bottom, with a swallow tail. That flatness is speed: a fish generates and carries it through soft, gutless sections where a shortboard would sink and stall. It rewards long, drawn-out arcs rather than tight turns in the pocket.",
+  "outline": "fish",
+  "ratings": {
+    "speed": 5,
+    "turning": 3,
+    "difficulty": 3
+  },
+  "assistLevel": 0,
+  "visualMesh": "/Game/3dModels/surfboard_fish.surfboard_fish",
+  "visualMaterial": "/Game/Materials/M_Surfboard.M_Surfboard",
+  "visualScale": 0.924,
+  "surferDeckOffsetZ": -0.201,
+  "tuning": {
+    "SurfboardForwardsDamping": 0.024,
+    "yawFwdOffFaceFloor": 0.18,
+    "AngularDampingX": 0.475,
+    "AngularDampingY": 0.475,
+    "AngularDampingZ": 0.15,
+    "lateralTurnCoefficient": 4500.0,
+    "lateralTurnHardCarveBoost": 0.525,
+    "slopeThrustCoefficient": 42206.9
+  }
+}

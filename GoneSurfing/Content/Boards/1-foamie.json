@@ -1,0 +1,29 @@
+{
+  "id": "foamie",
+  "displayName": "Foamie",
+  "tagline": "Catches everything. Turns like a barge.",
+  "description": "A soft-topped learner's board: thick, wide and full of volume, so it floats high, paddles easily and picks up waves long before a smaller board would. The soft deck and rails make a wipeout something you shrug off. All that volume is why it resists being put on edge - turns are wide, slow and have to be planned.",
+  "outline": "foamie",
+  "ratings": {
+    "speed": 2,
+    "turning": 1,
+    "difficulty": 1
+  },
+  "assistLevel": 4,
+  "visualMesh": "/Game/3dModels/surfboard_foamie.surfboard_foamie",
+  "visualMaterial": "/Game/Materials/M_SurfboardFoamie.M_SurfboardFoamie",
+  "visualScale": 1.175,
+  "surferDeckOffsetZ": 0.000,
+  "tuning": {
+    "SurfboardForwardsDamping": 0.015,
+    "yawFwdOffFaceFloor": 0.35,
+    "AngularDampingX": 0.55,
+    "AngularDampingY": 0.55,
+    "AngularDampingZ": 0.2,
+    "lateralTurnCoefficient": 2800.0,
+    "lateralTurnHardCarveBoost": 0.3,
+    "slopeThrustCoefficient": 29896.5,
+    "StaminaRecoverySeconds": 0.0,
+    "StaminaTiredGuardEverywhere": 1.0
+  }
+}
