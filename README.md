@@ -78,7 +78,7 @@ Physics you cannot reproduce is physics you cannot change. Three things make a r
 
 ## Built with an agent, deliberately
 
-The whole project is written with Claude Code, and the interesting part is not that an agent wrote
+Since one year ago, everything is written with Claude Code. And spec driven since then. The interesting part is not that an agent wrote
 the code — it is the loop built around it so the agent could be trusted with physics.
 
 **Spec first.** Non-trivial work starts as a spec in [`GoneSurfing/specs/`](GoneSurfing/specs/) —
