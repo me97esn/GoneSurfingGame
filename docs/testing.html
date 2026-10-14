@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gone Surfing — Testing</title>
+<meta name="description" content="What the Gone Surfing closed-test testers need to do: how to join, and what to report back.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+
+/* Layout: the whole ask fits one phone screen; everything else is behind tappable rows below a
+   hard stop line. Ocean-ink palette, sunlit accent, display face only on the two heads. */
+:root {
+  --bg:        #f0f6f6;
+  --surface:   #ffffff;
+  --surface-2: #e2eeee;
+  --fg:        #0d2430;
+  --fg-dim:    #4d6b76;
+  --line:      #c6dada;
+  --accent:    #00707f;
+  --accent-ink:#ffffff;
+
+  --display: 'Anton', 'Haettenschweiler', 'Arial Narrow', sans-serif;
+  --body: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  --utility: 'DM Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:        #081a22;
+    --surface:   #0e2731;
+    --surface-2: #13323e;
+    --fg:        #e6f2f1;
+    --fg-dim:    #8fb0b8;
+    --line:      #1e4452;
+    --accent:    #4fd6cd;
+    --accent-ink:#06222a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:        #081a22;
+  --surface:   #0e2731;
+  --surface-2: #13323e;
+  --fg:        #e6f2f1;
+  --fg-dim:    #8fb0b8;
+  --line:      #1e4452;
+  --accent:    #4fd6cd;
+  --accent-ink:#06222a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-text-size-adjust: 100%;
+}
+.wrap {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding-inline: 20px;
+  padding-block: 2rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+p { margin: 0; }
+.dim { color: var(--fg-dim); }
+
+/* ---- the essential block ---- */
+.hero { display: flex; flex-direction: column; gap: 0.6rem; }
+.eyebrow {
+  font-family: var(--utility);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.1rem, 10vw, 3rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  text-wrap: balance;
+  margin: 0;
+}
+.standfirst { font-size: 1.05rem; }
+
+ol.steps { list-style: none; counter-reset: s; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.7rem; }
+ol.steps > li { counter-increment: s; display: grid; grid-template-columns: 1.5rem 1fr; gap: 0.8rem; align-items: baseline; min-width: 0; }
+ol.steps > li::before {
+  content: counter(s);
+  font-family: var(--utility);
+  font-size: 0.85rem;
+  line-height: 1.5rem;
+  height: 1.5rem;
+  text-align: center;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.ask {
+  background: var(--surface-2);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 1rem;
+}
+.ask strong { font-weight: 600; }
+
+/* ---- the stop line ---- */
+.stop { display: flex; flex-direction: column; gap: 0.3rem; padding-top: 0.5rem; border-top: 2px solid var(--fg); }
+.stop h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.2rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.stop p { font-size: 0.92rem; color: var(--fg-dim); }
+
+/* ---- the optional rows ---- */
+.rows { display: flex; flex-direction: column; gap: 0.5rem; }
+details {
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+summary {
+  padding: 0.85rem 0.9rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+summary::-webkit-details-marker { display: none; }
+summary::after {
+  content: '+';
+  font-family: var(--utility);
+  font-size: 1.1rem;
+  color: var(--accent);
+  flex: none;
+}
+details[open] > summary::after { content: '\2212'; }
+details[open] > summary { border-bottom: 1px solid var(--line); }
+summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.inner { padding: 0.9rem; display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.95rem; }
+
+ul.plain { margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.45rem; }
+
+pre {
+  font-family: var(--utility);
+  font-size: 0.78rem;
+  line-height: 1.7;
+  background: var(--surface-2);
+  padding: 0.85rem;
+  margin: 0;
+  overflow-x: auto;
+  white-space: pre;
+}
+button {
+  font-family: var(--body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: none;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  align-self: flex-start;
+}
+button:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+.said { font-size: 0.85rem; color: var(--fg-dim); }
+
+footer { font-size: 0.9rem; color: var(--fg-dim); display: flex; flex-direction: column; gap: 0.6rem; }
+footer .fine { font-size: 0.82rem; }
+footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Closed test · Android</div>
+    <h1>Testing Gone Surfing</h1>
+    <p class="standfirst">A surf game. One wave, one board. Having it sit on your phone for two weeks is most of the favour.</p>
+  </header>
+
+  <ol class="steps">
+    <li><div>Accept the invitation on the link I sent you.</div></li>
+    <li><div>Install from the Play link on that page.</div></li>
+    <li><div>Hold the phone sideways and ride.</div></li>
+  </ol>
+
+  <div class="ask">
+    <p><strong>Keep it installed for two weeks</strong> and open it now and then. That is the part Google actually counts.</p>
+    <p><strong>Then send me two lines:</strong> which phone you have, and what you thought.</p>
+  </div>
+
+  <div class="stop">
+    <h2>That is the whole thing</h2>
+    <p>Everything below is for if something goes wrong, or if you feel like knowing more. None of it is homework.</p>
+  </div>
+
+  <div class="rows">
+
+    <details>
+      <summary>Play says it cannot find the game</summary>
+      <div class="inner">
+        <p>Almost always the account. Your phone has to be signed in to the <strong>same Google account you gave me</strong> — one address to me and a different one on the phone makes the game invisible. Check under your profile picture in Play, and tell me if it is a different one.</p>
+        <p>It can also take a few minutes to show up after you accept.</p>
+        <p class="dim">It needs Android 9 or newer. If Play calls your phone incompatible, send me the model.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>What is actually useful to tell me</summary>
+      <div class="inner">
+        <p>Two lines is genuinely fine. If you want to be more use than that, this is the shape of it — the phone model matters more than you would think, because most of what goes wrong only goes wrong on one kind of phone.</p>
+        <pre id="tpl">Phone:
+Android version:
+
+Did it start and look right?
+
+Did you work out the controls on your own?
+
+How did the riding feel?
+
+Anything that annoyed you?</pre>
+        <button id="copy" type="button">Copy the template</button>
+        <p class="said" id="said" hidden>Copied. Paste it into your reply.</p>
+        <p><strong>It is unfinished in places on purpose.</strong> If something looks like a missing feature rather than something broken, it probably is. Mention it anyway.</p>
+        <p><strong>There is no need to be good at it.</strong> If you fall off every time, that is not a failed test — it is the most useful thing you can tell me.</p>
+        <p>And four things worth a message of their own if they happen:</p>
+        <ul class="plain">
+          <li><strong>It will not start</strong>, or it closes by itself.</li>
+          <li><strong>Things are missing or black</strong> — the wave, the sky, the board. This happened on one older phone and I need to know how common it is.</li>
+          <li><strong>Your best ride vanished.</strong> If you think of it: ride once, close the game properly, open it again, check your best score survived.</li>
+          <li><strong>It feels jerky</strong> rather than smooth. A screen recording says more than words here.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>How the riding works</summary>
+      <div class="inner">
+        <p>Push the stick forward and the nose bites for speed; pull it back and the nose lifts and you turn tighter. The button is a pump: hold to crouch, release to drive. Each pump builds speed, which is how you get going across the flat parts.</p>
+        <p>Hard turns tire you out, and a tired surfer fights the board instead of riding it — so a long ride is about choosing which turns are worth it. Turns and carves score. Airs do not score yet, though the board will leave the water if the speed and the lip are there.</p>
+        <p>A play is one wave. It ends, you get a card with your ride on it, and you go again.</p>
+        <p>Five boards, easiest to hardest. Start on the foamie: floaty and hard to sink. The shortboard will punish a lazy turn.</p>
+      </div>
+    </details>
+
+
+  </div>
+
+  <footer>
+    <p>Reply wherever you got this link. "I opened it twice and forgot about it" is still two opens more than nothing.</p>
+    <p class="fine">No ads, nothing to buy, and it collects nothing about you and sends nothing anywhere. <a href="privacy.html">Privacy &amp; terms</a>.</p>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy');
+  var tpl = document.getElementById('tpl');
+  var said = document.getElementById('said');
+  if (!btn || !tpl || !said) { return; }
+  btn.addEventListener('click', function () {
+    function confirmCopy() { said.hidden = false; }
+    function selectInstead() {
+      try {
+        var r = document.createRange();
+        r.selectNodeContents(tpl);
+        var s = window.getSelection();
+        s.removeAllRanges();
+        s.addRange(r);
+      } catch (e) {}
+      said.textContent = 'Select and copy it by hand — this browser would not let me do it for you.';
+      said.hidden = false;
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(tpl.textContent).then(confirmCopy, selectInstead);
+      } else {
+        selectInstead();
+      }
+    } catch (e) {
+      selectInstead();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
