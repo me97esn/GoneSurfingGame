@@ -58,8 +58,11 @@ REM running editor caches read-only CVars from before any ini edit.
 taskkill /F /IM UnrealEditor.exe >nul 2>&1
 taskkill /F /IM LiveCodingConsole.exe >nul 2>&1
 
-set COOKED_DIR=%~dp0GoneSurfing\Saved\Cooked\Android_ASTC
-set ARCHIVE_DIR=%~dp0GoneSurfing\Saved\Releases
+REM Project paths come from the .uproject, not from this script's folder -
+REM the scripts also live in a checkout that has no project in it.
+for %%P in ("%PROJECT_PATH%") do set PROJECT_DIR=%%~dpP
+set COOKED_DIR=%PROJECT_DIR%Saved\Cooked\Android_ASTC
+set ARCHIVE_DIR=%PROJECT_DIR%Saved\Releases
 if exist "%COOKED_DIR%" (
     echo Clean cook: removing %COOKED_DIR%
     rmdir /s /q "%COOKED_DIR%"
@@ -72,10 +75,10 @@ REM DefaultEngine.ini is still checked so an older setup keeps working.
 REM Create both with MakeUploadKeystore.ps1.
 set DIST_ARG=
 set KEYSTORE_INI=
-findstr /B /C:"KeyStore=" "%~dp0GoneSurfing\Config\Android\AndroidEngine.ini" >nul 2>&1
+findstr /B /C:"KeyStore=" "%PROJECT_DIR%Config\Android\AndroidEngine.ini" >nul 2>&1
 if not errorlevel 1 set KEYSTORE_INI=Config\Android\AndroidEngine.ini
 if "%KEYSTORE_INI%"=="" (
-    findstr /B /C:"KeyStore=" "%~dp0GoneSurfing\Config\DefaultEngine.ini" >nul 2>&1
+    findstr /B /C:"KeyStore=" "%PROJECT_DIR%Config\DefaultEngine.ini" >nul 2>&1
     if not errorlevel 1 set KEYSTORE_INI=Config\DefaultEngine.ini
 )
 if not "%KEYSTORE_INI%"=="" (
