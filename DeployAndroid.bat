@@ -87,17 +87,51 @@ REM retries followed by a NullReferenceException. UAT has been
 REM seen reporting BUILD SUCCESSFUL anyway, leaving the device with
 REM a new APK and NO game data - which shows up on the phone as
 REM "Failed to open descriptor file ... .uproject", not as a
-REM deploy error. Check, and push manually if it is missing.
+REM deploy error. Check every staged pak file against the device by
+REM size (a missing file and a truncated push both fail), and push
+REM manually if any is off.
+REM The staged build lives next to the .uproject, not next to this
+REM script - the two are in different checkouts.
+for %%P in ("%PROJECT_PATH%") do set PROJECT_DIR=%%~dpP
+set STAGED_PAKS=%PROJECT_DIR%Saved\StagedBuilds\Android_ASTC\GoneSurfing\Content\Paks
 set DEV_PAKS=/sdcard/Android/data/com.dsh.gonesurfing/files/UnrealGame/GoneSurfing/GoneSurfing/Content/Paks
-set PAKCOUNT=0
-for /f %%C in ('adb shell "ls %DEV_PAKS%/*.ucas 2^>/dev/null ^| wc -l"') do set PAKCOUNT=%%C
-if not "%PAKCOUNT%"=="1" (
-    echo DeployAndroid: device is missing pak data ^(found %PAKCOUNT% .ucas^) - pushing manually.
-    adb push "%~dp0GoneSurfing\Saved\StagedBuilds\Android_ASTC\GoneSurfing\Content\Paks" "%DEV_PAKS%/.."
+if not exist "%STAGED_PAKS%\*.ucas" (
+    echo DeployAndroid: no staged paks at %STAGED_PAKS%
+    exit /b 3
 )
+call :check_paks
+if errorlevel 1 (
+    echo DeployAndroid: device pak data does not match the staged build - pushing manually.
+    adb push "%STAGED_PAKS%" "%DEV_PAKS%/.."
+    call :check_paks
+    if errorlevel 1 (
+        echo DeployAndroid: device pak data STILL does not match after the manual push.
+        exit /b 3
+    )
+)
+echo DeployAndroid: device pak data matches the staged build.
 
 echo.
 echo DeployAndroid: done. Verify what actually landed on device with:
 echo   adb pull /sdcard/Android/data/com.dsh.gonesurfing/files/UnrealGame/GoneSurfing/GoneSurfing/Saved/Logs/GoneSurfing.log
 echo   grep "Set CVar" GoneSurfing.log
+exit /b 0
+
+REM --- :check_paks -------------------------------------------
+REM Exit 0 when every file in STAGED_PAKS is on the device at
+REM DEV_PAKS with the same size, 1 otherwise. Mismatches are echoed.
+:check_paks
+set PAKS_BAD=0
+for %%F in ("%STAGED_PAKS%\*") do call :check_one "%%~nxF" %%~zF
+exit /b %PAKS_BAD%
+
+:check_one
+set DEV_SIZE=missing
+REM Inside the double quotes the redirects go to the device shell
+REM as-is; carets there would be passed through literally.
+for /f %%S in ('adb shell "wc -c < %DEV_PAKS%/%~1 2>/dev/null"') do set DEV_SIZE=%%S
+if not "%DEV_SIZE%"=="%~2" (
+    echo   %~1: staged %~2 bytes, device %DEV_SIZE%
+    set PAKS_BAD=1
+)
 exit /b 0
